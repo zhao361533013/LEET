@@ -10,9 +10,10 @@ struct ListNode* partition(struct ListNode* head, int x) {
     {
         return head;
     }
-    struct ListNode r,w;
-    struct ListNode* a = &r;
-    struct ListNode* m = &w;
+    struct ListNode*a_1 = malloc (sizeof(struct ListNode));
+    struct ListNode*a_2 = malloc (sizeof(struct ListNode));
+    struct ListNode* a = a_1;
+    struct ListNode* m = a_2;
     
     while (head)
     {
@@ -30,6 +31,6 @@ struct ListNode* partition(struct ListNode* head, int x) {
         }
     }
     m -> next = NULL;
-    a -> next = w.next;
-    return r.next;
+    a -> next = a_2->next;
+    return a_1->next;
 }
