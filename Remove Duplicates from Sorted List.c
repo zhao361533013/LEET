@@ -5,6 +5,50 @@
  *     struct ListNode *next;
  * };
  */
+struct ListNode* deleteDuplicates(struct ListNode* head) {
+    if (head) {
+    struct ListNode *p = head;
+    while (p->next) {
+        if (p->val != p->next->val) {
+            p = p->next;
+        }
+        else {
+            struct ListNode *tmp = p->next;
+            p->next = p->next->next;
+            free(tmp);
+        }
+    }
+}
+
+return head;
+}
+
+//下面那种是自己做的 太蠢了 忘了就好 忘了就好。。。。。。。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
 struct ListNode* deleteDuplicates(struct ListNode* head) 
 {
     if (head == NULL)
@@ -44,3 +88,5 @@ struct ListNode* deleteDuplicates(struct ListNode* head)
     }
       return newp1->next;
 }
+
+
