@@ -39,6 +39,6 @@ struct ListNode* reverseList(struct ListNode* head) {
     return head;
     struct ListNode *root=reverseList(head->next);
     head->next->next=head;
-    head->next=NULL;
+    head->next=NULL; //这两步的做法相当于反转指针
     return root;
 }
