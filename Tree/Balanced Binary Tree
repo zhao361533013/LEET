@@ -1,0 +1,33 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+        int level = 1;
+        if (root == null)
+        {
+            return true;
+        }
+        int a = ceng (root.left,level);
+        int b = ceng (root.right,level);
+        if (Math.abs(a-b)<=1){
+            return true&&isBalanced(root.left)&&isBalanced(root.right);
+        }
+            return false;       
+    }
+    public static int ceng(TreeNode root,int level)
+    {
+        if (root == null)
+        {
+            return level-1;
+        }
+        return Math.max(ceng(root.left,level+1),ceng(root.right,level+1));
+    }
+}
+//判断一棵树是不是最优二叉树。
