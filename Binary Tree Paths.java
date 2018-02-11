@@ -60,4 +60,36 @@ class Solution {
         return a;
     }
 }
+second：
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<String> resultList = new ArrayList<String>();
+     public List<String> binaryTreePaths(TreeNode root) {
+        if (root == null) {
+            return resultList;
+        }
+        findPaths(root, root.val + "");
+        return resultList;
+    }
+
+    private void findPaths(TreeNode node, String path) {
+        if (node.left == null && node.right == null) {
+            resultList.add(path);
+        }
+        if (node.left != null) {
+            findPaths(node.left, path + "->" + node.left.val);
+        }
+        if (node.right != null) {
+            findPaths(node.right, path + "->" + node.right.val);
+        }
+    }
+}
 /***深度优先搜索 DFS  借鉴：http://blog.csdn.net/crazy1235/article/details/51474128（这个人用了6种方法！！）
