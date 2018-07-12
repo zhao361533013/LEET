@@ -1,0 +1,55 @@
+Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+Example 1:
+Input:
+[
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ]
+]
+Output: [1,2,3,6,9,8,7,4,5]
+Example 2:
+Input:
+[
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9,10,11,12]
+]
+Output: [1,2,3,4,8,12,11,10,9,5,6,7]
+
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> sprial = new ArrayList<>();
+        if (matrix == null ||matrix.length == 0|| matrix[0]== null|| matrix[0].length == 0 ){
+            return sprial;
+        }
+        int a = matrix.length, b = matrix[0].length;
+        int c = 0, d = a - 1, e = 0 , f = b - 1 ;
+        while (c <= d && e <= f){
+            for (int i = e ; i <= f ; i++){
+                sprial.add(matrix[c][i]);
+            }
+            c++;
+            for (int q = c; q <= d ; q ++){
+                sprial.add(matrix[q][f]);
+            }
+            f--;
+            if(c <= d){
+                for (int p = f; p >= e;p--){
+                    sprial.add(matrix[d][p]);
+                }
+                d --;
+            }
+            if (e <= f){
+                for (int u = d ; u >= c; u--){
+                    sprial.add(matrix[u][e]);
+                }
+                e ++;
+            }
+        }
+        return sprial;
+    }
+}
+
+
+做法是确定四个坐标 然后依次加入数组
+需要注意的是当边界改变的时候 需要重新判断是否越界.........
