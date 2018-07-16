@@ -1,0 +1,62 @@
+Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
+
+Example 1:
+
+Input: "babad"
+Output: "bab"
+Note: "aba" is also a valid answer.
+Example 2:
+
+Input: "cbbd"
+Output: "bb"
+
+
+class Solution {
+    public String longestPalindrome(String s) {
+        if (s == null || s.length()== 0)
+            return "";
+        boolean[] palin = new boolean[s.length()];
+        String res = "";
+        for (int i = 0; i <=s.length()-1 ; i++){
+            for (int j = 0;j<=i;j++){
+                if (s.charAt(i)== s.charAt(j)&&(i-j<=1||palin[j+1])){
+                    palin[j] = true;
+                    if (res.length() < i-j+1){
+                        if (i == s.length()-1&&j==0){
+                            return s;
+                        }
+                        res= s.substring(j,i+1);
+                    }
+                }else palin [j] = false;
+            }
+        }
+        return res;
+    }
+}
+
+动态规划问题.
+
+class Solution {
+     String res = "";
+    public String longestPalindrome(String s) {
+        if (s == null || s.length()== 0)
+            return "";
+        for (int i = 0; i < s.length(); i++){
+            ld (s ,i,i);
+            ld (s,i,i+1);
+        }
+        return res;
+    }    
+    public void ld (String s,int i ,int j){
+        int left = i, right = j ;
+        while (left >= 0 && right <s.length() && s.charAt(left)==s.charAt(right)){
+            left --;
+            right ++;
+        }
+        String temp = s.substring (left+1, right);
+         if (temp.length() > res.length()){
+                res = temp;
+            }
+        }
+}
+解法2 采用的是从中心向两边判断 时间复杂度相同 但是空间复杂度为1.
