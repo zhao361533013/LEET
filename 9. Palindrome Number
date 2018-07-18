@@ -1,0 +1,16 @@
+Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        String m = String.valueOf(x);
+        String reverse = new StringBuffer(m).reverse().toString();
+        if (m.equals(reverse)){
+            return true;
+        }
+        return false;
+    }
+}
+
+判断String是否相等 equals()函数
+将 int转换成String  String.valueof()
+将String反转  String reverse = new StringBuffer(m).reverse().toString();
