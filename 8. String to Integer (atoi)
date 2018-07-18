@@ -1,0 +1,37 @@
+class Solution {
+    public int myAtoi(String str) {
+        double result = 0;
+        if (str == null||str.length()==0){
+            return 0;
+        }
+        int sign = 1, i = 0;
+        str = str.trim();
+        if (str.length()==0){
+            return 0;
+        }
+        if (str.charAt(0)== '+')
+            i++;
+        else if (str.charAt(0) == '-'){
+            i++;
+            sign = -1;
+        }
+        
+       while (str.length()>i&&str.charAt(i)>='0'&&str.charAt(i)<='9'){
+           result = result*10 + (str.charAt(i)-'0');
+           i++;
+       }
+        if (sign == -1)
+            result = -result;
+        if (result > Integer.MAX_VALUE)
+            return Integer.MAX_VALUE;
+        if (result < Integer.MIN_VALUE)
+            return Integer.MIN_VALUE;
+            
+        return (int) result;
+    }
+}
+
+
+trim() 函数 可以去除字符串前面的空格
+String类型的符号是"" char类型的符号是''
+char类型可以直接比较数字
