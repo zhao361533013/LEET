@@ -1,0 +1,42 @@
+Determine if a 9x9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+
+Each row must contain the digits 1-9 without repetition.
+Each column must contain the digits 1-9 without repetition.
+Each of the 9 3x3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+
+A partially filled sudoku which is valid.
+
+The Sudoku board could be partially filled, where empty cells are filled with the character '.'.
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        for (int i = 0; i < 9; i++){
+            if (ld(board,i,i,0,8)==false){
+                return false;
+            }
+            if (ld(board,0,8,i,i)== false){
+                return false;
+            }
+        }
+        for (int i = 0; i < 3 ; i++){
+            for (int j = 0; j < 3; j++){
+                if (ld (board,3*i,3*i+2,3*j,3*j+2)==false){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public boolean ld(char[][] board, int rowSt, int rowEn,int colSt, int colEn){
+        Set <Character> set = new HashSet<>();
+        for (int i = rowSt;i <= rowEn; i++){
+            for (int j = colSt; j <= colEn; j++ ){
+                if (set.contains(board[i][j])){
+                    return false;
+                }else if(board[i][j] != '.'){
+                    set.add(board[i][j]);
+                }
+            }
+        }
+        return true;
+    }
+}
