@@ -1,0 +1,39 @@
+47. Permutations 
+IIDescriptionHintsSubmissionsDiscussSolution
+Given a collection of numbers that might contain duplicates, return all possible unique permutations.
+
+Example:
+
+Input: [1,1,2]
+Output:
+[
+  [1,1,2],
+  [1,2,1],
+  [2,1,1]
+]
+
+
+class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List <List<Integer>> ld = new ArrayList<>();
+        if (nums == null || nums.length == 0) return ld;
+        Arrays.sort(nums);
+        boolean [] visit = new boolean[nums.length];
+        dps (ld, new ArrayList<>() ,nums, visit);
+        return ld;
+    }
+    public void dps (List<List<Integer>> ld, List list, int[] nums,boolean [] visit){
+        if (list.size() == nums.length){
+            ld.add(new ArrayList<>(list));
+            return;
+        }
+        for (int i = 0; i < nums.length;i++){
+            if (visit[i] || (i>0 && nums[i-1]==nums[i] && visit[i-1])) continue;
+            visit [i] = true;
+            list.add(nums[i]);
+            dps(ld,list,nums,visit);
+            list.remove(list.size()-1);
+            visit[i] = false;
+        }   
+    }
+}
