@@ -20,19 +20,18 @@ n is a 32-bit signed integer, within the range [−231, 231 − 1]
 
 class Solution {
     public double myPow(double x, int n) {
-        if (n == 1) return x;
-        if (n == 0) return 1;
-        int t = n/2;
-        if (n < 0){
-            t = -t;
-            x = 1/x;
+        if(n==Integer.MIN_VALUE){
+            double temp = myPow(x, n>>1);
+            return temp*temp;
         }
-        double ld = myPow(x,t);
+        if (n == 0) return 1;
+        if (n < 0){
+           return 1/myPow(x,-n);
+        }
+        double ld = myPow(x,n/2);
         if (n%2 == 0) return ld*ld;
         return ld*ld*x;
     }
 }
-
-
 开始是使用for循环的解法 时间复杂度是N2  这里考虑是用二分法来做。
 https://blog.csdn.net/u014755255/article/details/50193463
