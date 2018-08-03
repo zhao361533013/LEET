@@ -32,7 +32,7 @@ public class Solution {
         for (int i = 1;i<=n;i++){
             nums.add(i); 
         }
-        k--;
+        k--; // 这一步使得 1-based 挪到 0-based
         StringBuilder sb = new StringBuilder();
         while (n>0){
             int q = jie (n-1);
