@@ -1,0 +1,89 @@
+Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
+
+
+class Solution {
+    public int[][] generateMatrix(int n) {
+        int rowBegin = 0 ; int rowEnd = n-1;
+		int colBegin = 0 ; int colEnd = n-1;
+		
+		int[][] matrix = new int[n][n];
+		
+		int val = 1;
+		
+		while(rowBegin <= rowEnd && colBegin <= colEnd) {
+			
+			//from left to right
+			for(int j = colBegin ;  j <= colEnd ; j++) {
+				matrix[rowBegin][j] = val++;
+			}
+			rowBegin++;
+			
+			//from top to bottom
+			for(int i = rowBegin ; i <= rowEnd ; i++) {
+				matrix[i][colEnd] = val++;
+			}
+			colEnd--;
+			
+			//from right to left
+			for(int j = colEnd ; j >= colBegin ; j--) {
+				matrix[rowEnd][j] = val++;
+			}
+			
+			rowEnd--;
+			
+			//from bottom to top
+			for(int i = rowEnd ; i>= rowBegin ; i--) {
+				matrix[i][colBegin] = val++;
+			}
+			colBegin++;
+			
+		}
+		
+        return matrix;
+    }
+}
+
+
+
+
+
+
+
+
+class Solution {
+    public int[][] generateMatrix(int n) {
+        int l = 0; int h = n;
+        int [][] res = new int [n][n];
+        int max = n*n;
+        int k = 1;int i = 0; int j = 0;
+        while (k <= max){
+            while (k<=max &&j<h){
+                res[i][j++] = k++;
+            }
+            j--;
+            i++;
+            
+            while (k<=max && i<h){
+                res[i++][j] = k++;
+            }
+            i--;
+            j--;
+            
+            while (k <= max && j>=l){
+                res[i][j--] = k++;
+            }
+            j++;
+            i--;
+            
+            while (k <= max && i>l){
+                res[i--][j] = k++;
+            }
+            i++;
+            j++;
+            h--;
+            l++;
+        }
+            
+         return res;   
+        }
+    }
